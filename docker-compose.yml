@@ -1,0 +1,18 @@
+services:
+  app:
+    build: 
+      context: ./
+      target: ${BUILD_TAGET}
+      args:
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTP_PROXY}
+        - USER=${USER}
+        - GROUPNAME=${GROUPNAME}
+    image: ${BUILD_TAGET}
+    container_name: ${BUILD_TAGET}-instance
+    restart: unless-stopped
+    tty: true
+    ports: 
+     - "3000:3000"
+    # volumes:
+    #  - ./volumes/${USER}/:/home/${USER}/workspace
